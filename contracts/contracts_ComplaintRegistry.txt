@@ -1,0 +1,17 @@
+pragma solidity ^0.8.0;
+
+contract ComplaintRegistry {
+    struct Complaint {
+        uint256 timestamp;
+    }
+
+    mapping(string => Complaint) public complaints;
+
+    function logComplaint(string memory complaintId) public {
+        complaints[complaintId] = Complaint(block.timestamp);
+    }
+
+    function getComplaint(string memory complaintId) public view returns (uint256 timestamp) {
+        return complaints[complaintId].timestamp;
+    }
+}
